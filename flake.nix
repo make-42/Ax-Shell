@@ -20,6 +20,7 @@
           allowUnfreePredicate = pkg:
             builtins.elem (nixpkgs.lib.getName pkg) [
               "cuda-merged"
+              "cuda_cuobjdump"
             ];
         };
         overlays = [
