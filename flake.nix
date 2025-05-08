@@ -16,6 +16,12 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
         inherit system;
+        config = {
+          allowUnfreePredicate = pkg:
+            builtins.elem (lib.getName pkg) [
+              "cuda-merged"
+            ];
+        };
         overlays = [
           fabric.overlays.${system}.default
         ];
