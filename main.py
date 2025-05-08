@@ -41,8 +41,12 @@ if __name__ == "__main__":
 
     def set_css():
         from config.data import CURRENT_WIDTH, CURRENT_HEIGHT
+        css_path_env = os.environ.get("FABRIC_CSS_PATH")
+        css_path = get_relative_path("main.css")
+        if css_path_env:
+            css_path = css_path_env
         app.set_stylesheet_from_file(
-            get_relative_path("main.css"),
+            css_path,
             exposed_functions={
                 "overview_width": lambda: f"min-width: {CURRENT_WIDTH * 0.1 * 5 + 92}px;",
                 "overview_height": lambda: f"min-height: {CURRENT_HEIGHT * 0.1 * 2 + 32 + 64}px;",

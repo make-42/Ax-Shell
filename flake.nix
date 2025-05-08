@@ -96,9 +96,14 @@
           cat > $out/bin/ax-shell <<EOF
           #!${pkgs.runtimeShell}
           export PYTHONPATH="${toString ./.}:${pythonEnv}/lib/python${pythonEnv.python.version}/site-packages"
+          export FABRIC_CSS_PATH="$out/share/ax-shell/main.css"
           exec ${pythonEnv}/bin/python ${./main.py} "\$@"
           EOF
           chmod +x $out/bin/ax-shell
+          # Copy main.css into share directory
+          mkdir -p $out/share/ax-shell
+          cp main.css $out/share/ax-shell/
+
         '';
       };
 
