@@ -18,7 +18,7 @@
         inherit system;
         config = {
           allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [
+            builtins.elem (nixpkgs.lib.getName pkg) [
               "cuda-merged"
             ];
         };
